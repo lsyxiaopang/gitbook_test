@@ -9,6 +9,5 @@
   * [Pets](reference/api-reference/pets.md)
   * [Users](reference/api-reference/users.md)
 
-***
-
+## New features
 * [adaptive集成](adaptive-ji-cheng.md)
