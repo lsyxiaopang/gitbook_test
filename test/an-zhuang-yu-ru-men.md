@@ -303,7 +303,20 @@ ct = Controller(None,"COM9",my_controller_callback,my_measure_control)
 
 在初始化时,函数会以阻断形式进行归位(`$H`)操作,归位完成且没有其他异常后函数会返回,用户可以进行下一步操作
 ### 添加指令
+接下来是向`Controller`中添加指令,假如我们要移动到某一个点`(x,y,z)`并且要执行测量,那么我们可以使用`Controller.add_cmd(point,True)`将这一条命令添加进去
 
+{% hint style="info" %}
+这里添加指令的操作在加载了路径规划器后会有更加丰富的结果,可以参考相关的文档
+{% endhint %}
+
+### 运行指令
+需要注意到的是,我们这里运行指令**不是通过调用某一个函数实现**,而是通过将`move_start`属性设置为`True`,机器就会自动开始运行,相似地,将`move_start`属性为`False`,机器也就会停止.
+
+{% hint style="warning" %}
+这里的`move_start`设置为`False`后系统**仍然会完成当前的运动**,因此不能被用作紧急停止装置
+{% endhint %}
+
+而当所有命令执行完毕后,系统将自动将`move_start`设置为`False`,并且同时调用 `no_command_call`提醒用户所有命令已经执行完毕
 
 
 
